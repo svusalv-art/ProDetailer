@@ -1,260 +1,606 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="az">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101214">
-<title>ProDetailer | Tbilisi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProDetailer | Professional Car Care</title>
+
 <style>
-:root{--bg:#0d0f10;--panel:#171a1c;--line:#2c3134;--text:#f5f6f7;--muted:#aab1b6;--accent:#c9f31d}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,Arial,sans-serif}
-.wrap{max-width:920px;margin:auto;padding:0 18px}
-header{position:sticky;top:0;background:#0d0f10ed;border-bottom:1px solid var(--line);z-index:2}
-.nav{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.brand{font-size:20px;font-weight:900}
-.brand span,h1 em{color:var(--accent)}
-.controls{display:flex;gap:7px}
-select,input{background:#101214;border:1px solid #3a4145;color:white;border-radius:10px;padding:10px;max-width:140px}
-.hero{padding:54px 0 30px}
-.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
-h1{font-size:clamp(38px,8vw,64px);line-height:1.04;margin:12px 0}
-h1 em{font-style:normal}
-.muted{color:var(--muted)}
-.btn{display:inline-block;padding:12px 17px;border-radius:11px;text-decoration:none;font-weight:800;margin:8px 6px 0 0}
-.primary{background:var(--accent);color:#101214}
-.secondary{border:1px solid #454b4f;color:white}
-.banner{margin-top:25px;padding:24px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(120deg,#1b2022,#111314);font-size:24px;font-weight:800}
-.banner b{float:right;color:var(--accent);font-size:42px}
-section{padding:28px 0}
-.head{margin-bottom:16px}
-.head h2{font-size:28px;margin:4px 0}
-.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
-.card h3{margin:6px 0}
-.card p{color:var(--muted);font-size:14px;margin:0}
-.grid{display:grid;grid-template-columns:1fr;gap:12px}
-.field{display:grid;gap:6px}
-.field label{font-size:13px;font-weight:700}
-.field select{max-width:none;width:100%}
-.result{background:#1a2010;border-color:#46521b}
-.calc-btn{width:100%;margin-top:14px;border:0;cursor:pointer;font:inherit;font-weight:900;font-size:16px}
-.result small{color:var(--muted)}
-#price{font-size:30px;font-weight:900;color:var(--accent);margin:5px 0}
-.note{font-size:12px;color:var(--muted)}
-footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);font-size:12px}
-@media(min-width:650px){
-  .grid{grid-template-columns:1.2fr .8fr}
-  .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .cards{grid-template-columns:repeat(2,1fr)}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #101214;
+  color: #f5f5f5;
+  line-height: 1.6;
 }
-@media(max-width:430px){
-  .controls select{max-width:95px;padding:8px 4px;font-size:12px}
-  .cards{grid-template-columns:1fr}
-  .banner b{font-size:30px}
+
+header {
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #191c1f;
+  border-bottom: 1px solid #333;
 }
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #e8b44a;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+select, input, button {
+  padding: 11px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  font-size: 15px;
+}
+
+select {
+  background: #222629;
+  color: white;
+}
+
+.hero {
+  padding: 65px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #202428, #101214);
+}
+
+.hero h1 {
+  font-size: clamp(30px, 6vw, 48px);
+  margin: 0 0 15px;
+}
+
+.hero p { color: #c5c5c5; }
+
+.gold { color: #e8b44a; }
+
+main {
+  width: min(900px, 92%);
+  margin: 35px auto;
+}
+
+.panel {
+  background: #191c1f;
+  padding: 24px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  margin-bottom: 22px;
+}
+
+h2 { margin-top: 0; }
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.service {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #24282c;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.service input {
+  margin-top: 5px;
+  accent-color: #e8b44a;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 7px;
+  color: #ccc;
+}
+
+.field select { width: 100%; }
+
+button {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.calculate {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  background: #e8b44a;
+  color: #151515;
+  border: none;
+  font-size: 17px;
+}
+
+.calculate:hover { background: #f4c969; }
+
+#result {
+  display: none;
+  text-align: center;
+  margin-top: 22px;
+  padding: 22px;
+  border: 1px solid #e8b44a;
+  border-radius: 10px;
+}
+
+#price {
+  font-size: 32px;
+  font-weight: bold;
+  color: #e8b44a;
+}
+
+.note {
+  color: #aaa;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #aaa;
+  border-top: 1px solid #333;
+}
+
+a { color: #e8b44a; }
+
 </style>
 </head>
+
 <body>
 
 <header>
-  <div class="wrap nav">
-    <div class="brand">PRO<span>DETAILER</span></div>
-    <div class="controls">
-      <select id="lang" aria-label="Language">
-        <option value="az">AZ · Azərbaycan</option>
-        <option value="en">EN · English</option>
-        <option value="ru">RU · Русский</option>
-        <option value="ka">KA · ქართული</option>
-      </select>
-      <select id="currency" aria-label="Currency">
-        <option value="GEL">₾ GEL</option>
-        <option value="USD">$ USD</option>
-        <option value="AZN">₼ AZN</option>
-      </select>
-    </div>
+  <div class="logo">ProDetailer<span class="gold">.</span></div>
+
+  <div class="controls">
+    <select id="language" aria-label="Language">
+      <option value="az">AZ</option>
+      <option value="en">EN</option>
+      <option value="ru">RU</option>
+      <option value="ka">KA</option>
+    </select>
+
+    <select id="currency" aria-label="Currency">
+      <option value="GEL">GEL ₾</option>
+      <option value="USD">USD $</option>
+      <option value="AZN">AZN ₼</option>
+    </select>
   </div>
 </header>
 
-<main class="wrap">
+<section class="hero">
+  <h1 data-t="title">Avtomobilinizə peşəkar qulluq</h1>
+  <p data-t="subtitle">Polirovka · Kimyəvi təmizləmə · Detailing</p>
+  <p class="gold" data-t="tagline">Keyfiyyət hər detalda</p>
+</section>
 
-  <section class="hero">
-    <div class="eyebrow" data-t="eyebrow">TBILISI · AVTOMOBİL DETAILING</div>
-    <h1 data-html="title">Avtomobilinə<br><em>yeni görünüş</em> ver.</h1>
-    <p class="muted" data-t="intro">Peşəkar polirovka və salonun kimyəvi təmizlənməsi. Avtomobilinin vəziyyətinə uyğun xidməti seç.</p>
-    <a class="btn primary" href="#calculator" data-t="cta">Qiyməti hesabla</a>
-    <a class="btn secondary" href="#services" data-t="servicesBtn">Xidmətlərə bax</a>
-    <div class="banner">
-      <span data-html="banner">Detallara diqqət.<br>Görünən nəticə.</span><b>PD.</b>
+<main>
+
+  <section class="panel">
+    <h2 data-t="servicesTitle">Xidmətləri seçin</h2>
+
+    <div class="services">
+      <label class="service">
+        <input type="checkbox" value="polish">
+        <span data-t="polish">Boya polirovkası</span>
+      </label>
+
+      <label class="service">
+        <input type="checkbox" value="chemical">
+        <span data-t="chemical">Salonun kimyəvi təmizlənməsi</span>
+      </label>
+
+      <label class="service">
+        <input type="checkbox" value="interior">
+        <span data-t="interior">Salon detailing</span>
+      </label>
+
+      <label class="service">
+        <input type="checkbox" value="wax">
+        <span data-t="wax">Qoruyucu mum / sealant</span>
+      </label>
+
+      <label class="service">
+        <input type="checkbox" value="headlights">
+        <span data-t="headlights">Fara bərpası</span>
+      </label>
+
+      <label class="service">
+        <input type="checkbox" value="full">
+        <span data-t="full">Kompleks detailing</span>
+      </label>
     </div>
   </section>
 
-  <section id="services">
-    <div class="head">
-      <div class="eyebrow" data-t="servicesEyebrow">XİDMƏTLƏR</div>
-      <h2 data-t="servicesTitle">Avtomobilin üçün</h2>
-      <p class="muted" data-t="servicesIntro">Qiymət avtomobilin ölçüsündən və vəziyyətindən asılıdır.</p>
-    </div>
-    <div class="cards">
-      <article class="card"><div>✨</div><h3 data-t="polish">Polirovka</h3><p data-t="polishDesc">Lakın vəziyyətinin qiymətləndirilməsi, cızıqların analizi və uyğun polirovka mərhələləri.</p></article>
-      <article class="card"><div>🧽</div><h3 data-t="chemical">Kimyəvi təmizləmə</h3><p data-t="chemicalDesc">Salon, oturacaqlar, xalça və parça səthlərin dərin təmizlənməsi.</p></article>
-      <article class="card"><div>🛡️</div><h3 data-t="interior">Salon detalları</h3><p data-t="interiorDesc">Plastik, dəri və digər salon səthlərinin materiala uyğun təmizlənməsi.</p></article>
-      <article class="card"><div>📸</div><h3 data-t="assessment">İlkin qiymətləndirmə</h3><p data-t="assessmentDesc">Avtomobilin vəziyyətinə uyğun xidmət və qiymət barədə ilkin məsləhət.</p></article>
-    </div>
-  </section>
+  <section class="panel">
+    <h2 data-t="calculatorTitle">Qiymət kalkulyatoru</h2>
 
-  <section id="calculator">
-    <div class="head">
-      <div class="eyebrow" data-t="calcEyebrow">QİYMƏT KALKULYATORU</div>
-      <h2 data-t="calcTitle">Təxmini qiyməti hesabla</h2>
-      <p class="muted" data-t="calcIntro">Qiymətlər nümunəvi başlanğıc aralıqlarıdır. Yekun məbləğ baxışdan sonra təsdiqlənir.</p>
-    </div>
-    <div class="grid">
-      <div class="panel">
-        <div class="fields">
-          <div class="field">
-            <label for="service" data-t="serviceLabel">Xidmət</label>
-            <select id="service">
-              <option value="polish" data-t="optPolish">Polirovka</option>
-              <option value="chemical" data-t="optChemical">Kimyəvi təmizləmə</option>
-              <option value="both" data-t="optBoth">Polirovka + kimyəvi təmizləmə</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="size" data-t="sizeLabel">Avtomobil ölçüsü</label>
-            <select id="size">
-              <option value="small" data-t="small">Kiçik (sedan / hatchback)</option>
-              <option value="medium" data-t="medium">Orta (sedan / universal)</option>
-              <option value="large" data-t="large">Böyük (SUV / minivan)</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="condition" data-t="conditionLabel">Vəziyyət</label>
-            <select id="condition">
-              <option value="normal" data-t="normal">Normal</option>
-              <option value="dirty" data-t="dirty">Çox çirkli / çox ləkəli</option>
-              <option value="hard" data-t="hard">Çətin cızıqlar / əlavə iş</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="level" data-t="levelLabel">Polirovka səviyyəsi</label>
-            <select id="level">
-              <option value="one" data-t="one">Yüngül / 1 mərhələ</option>
-              <option value="two" data-t="two">Orta / 2 mərhələ</option>
-              <option value="three" data-t="three">Dərin / 3 mərhələyə qədər</option>
-            </select>
-          </div>
-        </div>
-        <button type="button" id="calculate" class="btn primary calc-btn" data-t="calculateBtn">Hesabla</button>
+    <div class="fields">
+      <div class="field">
+        <label for="size" data-t="sizeLabel">Avtomobil ölçüsü</label>
+        <select id="size">
+          <option value="1" data-t="small">Kiçik</option>
+          <option value="1.25" data-t="medium">Orta</option>
+          <option value="1.5" data-t="large">Böyük / SUV</option>
+        </select>
       </div>
-      <div class="panel result">
-        <small data-t="estimateLabel">Təxmini qiymət aralığı</small>
-        <div id="price">₾ 250–400</div>
-        <p class="muted" data-t="estimateNote">Dəqiq qiymət avtomobilə baxışdan sonra verilir.</p>
-        <p class="note" data-t="currencyNote">Valyuta çevirməsi təxminidir, məzənnələr nümunəvi və kod daxilində sabitdir.</p>
+
+      <div class="field">
+        <label for="condition" data-t="conditionLabel">Vəziyyəti</label>
+        <select id="condition">
+          <option value="1" data-t="good">Yaxşı</option>
+          <option value="1.2" data-t="normal">Orta</option>
+          <option value="1.45" data-t="bad">Çox çirkli / cızıqlı</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="level" data-t="levelLabel">İş səviyyəsi</label>
+        <select id="level">
+          <option value="1" data-t="basic">Standart</option>
+          <option value="1.3" data-t="premium">Premium</option>
+        </select>
       </div>
     </div>
+
+    <button class="calculate" id="calculate" type="button" data-t="calculate">
+      Hesabla
+    </button>
+
+    <div id="result" aria-live="polite">
+      <div data-t="estimatedPrice">Təxmini qiymət</div>
+      <div id="price">—</div>
+      <p class="note" data-t="disclaimer">
+        Son qiymət avtomobilə baxışdan sonra dəqiqləşdirilir.
+      </p>
+    </div>
+
+    <p class="note" id="rateStatus">
+      Valyuta məzənnəsi yüklənir...
+    </p>
   </section>
 
-  <section>
-    <div class="head">
-      <div class="eyebrow" data-t="contactEyebrow">ƏLAQƏ</div>
-      <h2 data-t="contactTitle">Birbaşa müraciət</h2>
-      <p class="muted" data-t="contactText">Telefon və ünvan hazır olanda əlavə ediləcək. Hələlik kalkulyatordan istifadə edə bilərsən.</p>
-    </div>
+  <section class="panel">
+    <h2 data-t="contactTitle">Əlaqə</h2>
+    <p data-t="contactText">
+      Qiyməti dəqiqləşdirmək və görüş təyin etmək üçün bizimlə əlaqə saxlayın.
+    </p>
+    <p>
+      <a href="https://wa.me/" target="_blank" rel="noopener"
+         data-t="whatsapp">WhatsApp ilə əlaqə</a>
+    </p>
   </section>
 
 </main>
 
 <footer>
-  <div class="wrap">© <span id="year"></span> ProDetailer · Tbilisi. <span data-t="footer">Qiymətlər ilkin təxminidir; yekun qiymət baxışdan sonra müəyyənləşir.</span></div>
+  © <span id="year"></span> ProDetailer.
+  <span data-t="footer">Bütün hüquqlar qorunur.</span>
 </footer>
 
 <script>
-const T = {
-  az: {eyebrow:'TBILISI · AVTOMOBİL DETAILING',title:'Avtomobilinə<br><em>yeni görünüş</em> ver.',intro:'Peşəkar polirovka və salonun kimyəvi təmizlənməsi. Avtomobilinin vəziyyətinə uyğun xidməti seç.',cta:'Qiyməti hesabla',servicesBtn:'Xidmətlərə bax',banner:'Detallara diqqət.<br>Görünən nəticə.',servicesEyebrow:'XİDMƏTLƏR',servicesTitle:'Avtomobilin üçün',servicesIntro:'Qiymət avtomobilin ölçüsündən və vəziyyətindən asılıdır.',polish:'Polirovka',polishDesc:'Lakın vəziyyətinin qiymətləndirilməsi, cızıqların analizi və uyğun polirovka mərhələləri.',chemical:'Kimyəvi təmizləmə',chemicalDesc:'Salon, oturacaqlar, xalça və parça səthlərin dərin təmizlənməsi.',interior:'Salon detalları',interiorDesc:'Plastik, dəri və digər salon səthlərinin materiala uyğun təmizlənməsi.',assessment:'İlkin qiymətləndirmə',assessmentDesc:'Avtomobilin vəziyyətinə uyğun xidmət və qiymət barədə ilkin məsləhət.',calcEyebrow:'QİYMƏT KALKULYATORU',calcTitle:'Təxmini qiyməti hesabla',calcIntro:'Qiymətlər nümunəvi başlanğıc aralıqlarıdır. Yekun məbləğ baxışdan sonra təsdiqlənir.',calculateBtn:'Hesabla',serviceLabel:'Xidmət',optPolish:'Polirovka',optChemical:'Kimyəvi təmizləmə',optBoth:'Polirovka + kimyəvi təmizləmə',sizeLabel:'Avtomobil ölçüsü',small:'Kiçik (sedan / hatchback)',medium:'Orta (sedan / universal)',large:'Böyük (SUV / minivan)',conditionLabel:'Vəziyyət',normal:'Normal',dirty:'Çox çirkli / çox ləkəli',hard:'Çətin cızıqlar / əlavə iş',levelLabel:'Polirovka səviyyəsi',one:'Yüngül / 1 mərhələ',two:'Orta / 2 mərhələ',three:'Dərin / 3 mərhələyə qədər',estimateLabel:'Təxmini qiymət aralığı',estimateNote:'Dəqiq qiymət avtomobilə baxışdan sonra verilir.',currencyNote:'Valyuta çevirməsi təxminidir, məzənnələr nümunəvi və kod daxilində sabitdir.',contactEyebrow:'ƏLAQƏ',contactTitle:'Birbaşa müraciət',contactText:'Telefon və ünvan hazır olanda əlavə ediləcək. Hələlik kalkulyatordan istifadə edə bilərsən.',footer:'Qiymətlər ilkin təxminidir; yekun qiymət baxışdan sonra müəyyənləşir.'},
-  en: {eyebrow:'TBILISI · CAR DETAILING',title:'Give your car a<br><em>fresh new look.</em>',intro:'Professional paint polishing and deep interior cleaning. Choose a service for your car\'s condition.',cta:'Estimate price',servicesBtn:'View services',banner:'Attention to detail.<br>Results you can see.',servicesEyebrow:'SERVICES',servicesTitle:'Care for your car',servicesIntro:'Pricing depends on vehicle size and condition.',polish:'Paint polishing',polishDesc:'Paint assessment, scratch evaluation and a suitable polishing process.',chemical:'Chemical interior cleaning',chemicalDesc:'Deep cleaning for seats, carpets and fabric surfaces.',interior:'Interior detailing',interiorDesc:'Material-appropriate cleaning for plastic, leather and other interior surfaces.',assessment:'Initial assessment',assessmentDesc:'Initial advice on suitable services and pricing for your vehicle.',calcEyebrow:'PRICE CALCULATOR',calcTitle:'Estimate your price',calcIntro:'These are sample starting ranges. The final quote is confirmed after inspection.',calculateBtn:'Calculate price',serviceLabel:'Service',optPolish:'Paint polishing',optChemical:'Chemical interior cleaning',optBoth:'Polishing + interior cleaning',sizeLabel:'Vehicle size',small:'Small (sedan / hatchback)',medium:'Medium (sedan / estate)',large:'Large (SUV / minivan)',conditionLabel:'Condition',normal:'Normal',dirty:'Very dirty / heavy stains',hard:'Difficult scratches / extra work',levelLabel:'Polishing level',one:'Light / 1 step',two:'Medium / 2 steps',three:'Heavy / up to 3 steps',estimateLabel:'Estimated price range',estimateNote:'Final quote is given after inspecting the vehicle.',currencyNote:'Currency conversion is approximate; sample rates are fixed in the code.',contactEyebrow:'CONTACT',contactTitle:'Contact us directly',contactText:'Phone and address will be added when available. Use the calculator for now.',footer:'Prices are estimates; the final price is determined after inspection.'},
-  ru: {eyebrow:'ТБИЛИСИ · ДЕТЕЙЛИНГ АВТОМОБИЛЕЙ',title:'Подари автомобилю<br><em>новый вид.</em>',intro:'Профессиональная полировка кузова и химчистка салона. Выберите услугу с учётом состояния автомобиля.',cta:'Рассчитать цену',servicesBtn:'Наши услуги',banner:'Внимание к деталям.<br>Заметный результат.',servicesEyebrow:'УСЛУГИ',servicesTitle:'Уход за автомобилем',servicesIntro:'Цена зависит от размера и состояния автомобиля.',polish:'Полировка кузова',polishDesc:'Оценка лака, анализ царапин и подбор этапов полировки.',chemical:'Химчистка салона',chemicalDesc:'Глубокая чистка сидений, ковров и тканевых поверхностей.',interior:'Детейлинг салона',interiorDesc:'Очистка пластика, кожи и других материалов с учётом их типа.',assessment:'Первичная оценка',assessmentDesc:'Предварительная консультация по услугам и цене для вашего автомобиля.',calcEyebrow:'КАЛЬКУЛЯТОР ЦЕНЫ',calcTitle:'Рассчитайте примерную цену',calcIntro:'Это примерные стартовые диапазоны. Окончательная цена подтверждается после осмотра.',calculateBtn:'Рассчитать цену',serviceLabel:'Услуга',optPolish:'Полировка кузова',optChemical:'Химчистка салона',optBoth:'Полировка + химчистка',sizeLabel:'Размер автомобиля',small:'Маленький (седан / хэтчбек)',medium:'Средний (седан / универсал)',large:'Большой (SUV / минивэн)',conditionLabel:'Состояние',normal:'Обычное',dirty:'Сильное загрязнение / много пятен',hard:'Сложные царапины / дополнительная работа',levelLabel:'Уровень полировки',one:'Лёгкий / 1 этап',two:'Средний / 2 этапа',three:'Глубокий / до 3 этапов',estimateLabel:'Примерный диапазон цены',estimateNote:'Точная цена сообщается после осмотра автомобиля.',currencyNote:'Конвертация примерная; условные курсы зафиксированы в коде.',contactEyebrow:'КОНТАКТЫ',contactTitle:'Свяжитесь напрямую',contactText:'Телефон и адрес добавим позже. Пока используйте калькулятор.',footer:'Цены предварительные; окончательная цена определяется после осмотра.'},
-  ka: {eyebrow:'თბილისი · ავტომობილის დეტეილინგი',title:'მიეცი შენს მანქანას<br><em>ახალი იერი.</em>',intro:'პროფესიონალური პოლირება და სალონის ქიმწმენდა. აირჩიე მომსახურება ავტომობილის მდგომარეობის მიხედვით.',cta:'ფასის გამოთვლა',servicesBtn:'სერვისების ნახვა',banner:'ყურადღება დეტალებზე.<br>შედეგი, რომელიც ჩანს.',servicesEyebrow:'სერვისები',servicesTitle:'ზრუნვა შენს ავტომობილზე',servicesIntro:'ფასი დამოკიდებულია ავტომობილის ზომასა და მდგომარეობაზე.',polish:'კუზაოს პოლირება',polishDesc:'ლაქის შეფასება, ნაკაწრების ანალიზი და პოლირების ეტაპების შერჩევა.',chemical:'სალონის ქიმწმენდა',chemicalDesc:'სავარძლების, ხალიჩებისა და ქსოვილის ღრმა წმენდა.',interior:'სალონის დეტეილინგი',interiorDesc:'პლასტმასის, ტყავისა და სხვა ზედაპირების შესაბამისი წმენდა.',assessment:'პირველადი შეფასება',assessmentDesc:'რეკომენდაცია შესაბამის მომსახურებასა და ფასზე.',calcEyebrow:'ფასის კალკულატორი',calcTitle:'გამოთვალე სავარაუდო ფასი',calcIntro:'ეს საორიენტაციო საწყისი ფასებია. საბოლოო ფასი დათვალიერების შემდეგ დადასტურდება.',calculateBtn:'ფასის გამოთვლა',serviceLabel:'მომსახურება',optPolish:'კუზაოს პოლირება',optChemical:'სალონის ქიმწმენდა',optBoth:'პოლირება + ქიმწმენდა',sizeLabel:'ავტომობილის ზომა',small:'პატარა (სედანი / ჰეჩბეკი)',medium:'საშუალო (სედანი / უნივერსალი)',large:'დიდი (SUV / მინივენი)',conditionLabel:'მდგომარეობა',normal:'ჩვეულებრივი',dirty:'ძალიან ჭუჭყიანი / ბევრი ლაქა',hard:'რთული ნაკაწრები / დამატებითი სამუშაო',levelLabel:'პოლირების დონე',one:'მსუბუქი / 1 ეტაპი',two:'საშუალო / 2 ეტაპი',three:'ღრმა / მაქსიმუმ 3 ეტაპი',estimateLabel:'სავარაუდო ფასის დიაპაზონი',estimateNote:'ზუსტი ფასი ავტომობილის დათვალიერების შემდეგ განისაზღვრება.',currencyNote:'ვალუტის გადაყვანა მიახლოებითია; პირობითი კურსები კოდში ფიქსირებულია.',contactEyebrow:'კონტაქტი',contactTitle:'დაგვიკავშირდი პირდაპირ',contactText:'ტელეფონი და მისამართი მოგვიანებით დაემატება. ახლა გამოიყენე კალკულატორი.',footer:'ფასები წინასწარია; საბოლოო ფასი დათვალიერების შემდეგ განისაზღვრება.'}
-};
+(function () {
+  "use strict";
 
-const rates = { GEL: 1, USD: 0.37, AZN: 0.63 };
-const symbols = { GEL: '₾', USD: '$', AZN: '₼' };
+  const translations = {
+    az: {
+      title: "Avtomobilinizə peşəkar qulluq",
+      subtitle: "Polirovka · Kimyəvi təmizləmə · Detailing",
+      tagline: "Keyfiyyət hər detalda",
+      servicesTitle: "Xidmətləri seçin",
+      polish: "Boya polirovkası",
+      chemical: "Salonun kimyəvi təmizlənməsi",
+      interior: "Salon detailing",
+      wax: "Qoruyucu mum / sealant",
+      headlights: "Fara bərpası",
+      full: "Kompleks detailing",
+      calculatorTitle: "Qiymət kalkulyatoru",
+      sizeLabel: "Avtomobil ölçüsü",
+      small: "Kiçik",
+      medium: "Orta",
+      large: "Böyük / SUV",
+      conditionLabel: "Vəziyyəti",
+      good: "Yaxşı",
+      normal: "Orta",
+      bad: "Çox çirkli / cızıqlı",
+      levelLabel: "İş səviyyəsi",
+      basic: "Standart",
+      premium: "Premium",
+      calculate: "Hesabla",
+      estimatedPrice: "Təxmini qiymət",
+      disclaimer: "Son qiymət avtomobilə baxışdan sonra dəqiqləşdirilir.",
+      contactTitle: "Əlaqə",
+      contactText: "Qiyməti dəqiqləşdirmək və görüş təyin etmək üçün bizimlə əlaqə saxlayın.",
+      whatsapp: "WhatsApp ilə əlaqə",
+      footer: "Bütün hüquqlar qorunur.",
+      chooseService: "Ən azı bir xidmət seçin.",
+      rateLoading: "Valyuta məzənnəsi yüklənir...",
+      rateLive: "Valyuta məzənnəsi internetdən yeniləndi.",
+      rateFallback: "Ehtiyat məzənnə istifadə olunur; məbləğ təxminidir."
+    },
 
-const base = {
-  polish:   { small: [180, 280], medium: [230, 350], large: [300, 450] },
-  chemical: { small: [150, 250], medium: [200, 320], large: [260, 400] }
-};
+    en: {
+      title: "Professional Care for Your Car",
+      subtitle: "Polishing · Deep Cleaning · Detailing",
+      tagline: "Quality in Every Detail",
+      servicesTitle: "Choose Services",
+      polish: "Paint polishing",
+      chemical: "Deep interior cleaning",
+      interior: "Interior detailing",
+      wax: "Protective wax / sealant",
+      headlights: "Headlight restoration",
+      full: "Full detailing",
+      calculatorTitle: "Price Calculator",
+      sizeLabel: "Vehicle size",
+      small: "Small",
+      medium: "Medium",
+      large: "Large / SUV",
+      conditionLabel: "Vehicle condition",
+      good: "Good",
+      normal: "Average",
+      bad: "Very dirty / scratched",
+      levelLabel: "Service level",
+      basic: "Standard",
+      premium: "Premium",
+      calculate: "Calculate",
+      estimatedPrice: "Estimated price",
+      disclaimer: "Final price is confirmed after vehicle inspection.",
+      contactTitle: "Contact",
+      contactText: "Contact us to confirm pricing and arrange an appointment.",
+      whatsapp: "Contact via WhatsApp",
+      footer: "All rights reserved.",
+      chooseService: "Please select at least one service.",
+      rateLoading: "Loading exchange rates...",
+      rateLive: "Exchange rates updated online.",
+      rateFallback: "Using fallback rates; displayed prices are estimates."
+    },
 
-let lastRange = { lo: 250, hi: 400 };
+    ru: {
+      title: "Профессиональный уход за автомобилем",
+      subtitle: "Полировка · Химчистка · Детейлинг",
+      tagline: "Качество в каждой детали",
+      servicesTitle: "Выберите услуги",
+      polish: "Полировка кузова",
+      chemical: "Химчистка салона",
+      interior: "Детейлинг салона",
+      wax: "Защитный воск / sealant",
+      headlights: "Восстановление фар",
+      full: "Полный детейлинг",
+      calculatorTitle: "Калькулятор стоимости",
+      sizeLabel: "Размер автомобиля",
+      small: "Маленький",
+      medium: "Средний",
+      large: "Большой / SUV",
+      conditionLabel: "Состояние автомобиля",
+      good: "Хорошее",
+      normal: "Среднее",
+      bad: "Очень грязный / царапанный",
+      levelLabel: "Уровень услуги",
+      basic: "Стандарт",
+      premium: "Премиум",
+      calculate: "Рассчитать",
+      estimatedPrice: "Примерная стоимость",
+      disclaimer: "Окончательная цена определяется после осмотра автомобиля.",
+      contactTitle: "Контакты",
+      contactText: "Свяжитесь с нами для уточнения цены и записи.",
+      whatsapp: "Связаться через WhatsApp",
+      footer: "Все права защищены.",
+      chooseService: "Выберите хотя бы одну услугу.",
+      rateLoading: "Загрузка курсов валют...",
+      rateLive: "Курсы валют обновлены через интернет.",
+      rateFallback: "Используется резервный курс; цена приблизительная."
+    },
 
-function getEl(id){ return document.getElementById(id); }
+    ka: {
+      title: "პროფესიონალური მოვლა თქვენი ავტომობილისთვის",
+      subtitle: "პოლირება · ქიმწმენდა · დეტეილინგი",
+      tagline: "ხარისხი თითოეულ დეტალში",
+      servicesTitle: "აირჩიეთ მომსახურება",
+      polish: "ძარის პოლირება",
+      chemical: "სალონის ქიმწმენდა",
+      interior: "სალონის დეტეილინგი",
+      wax: "დამცავი ცვილი / sealant",
+      headlights: "ფარების აღდგენა",
+      full: "სრული დეტეილინგი",
+      calculatorTitle: "ფასის კალკულატორი",
+      sizeLabel: "ავტომობილის ზომა",
+      small: "პატარა",
+      medium: "საშუალო",
+      large: "დიდი / SUV",
+      conditionLabel: "ავტომობილის მდგომარეობა",
+      good: "კარგი",
+      normal: "საშუალო",
+      bad: "ძალიან ჭუჭყიანი / დაკაწრული",
+      levelLabel: "მომსახურების დონე",
+      basic: "სტანდარტული",
+      premium: "პრემიუმი",
+      calculate: "გამოთვლა",
+      estimatedPrice: "სავარაუდო ფასი",
+      disclaimer: "საბოლოო ფასი განისაზღვრება ავტომობილის დათვალიერების შემდეგ.",
+      contactTitle: "კონტაქტი",
+      contactText: "ფასის დასაზუსტებლად და ჩასაწერად დაგვიკავშირდით.",
+      whatsapp: "WhatsApp-ით დაკავშირება",
+      footer: "ყველა უფლება დაცულია.",
+      chooseService: "აირჩიეთ მინიმუმ ერთი მომსახურება.",
+      rateLoading: "ვალუტის კურსის ჩატვირთვა...",
+      rateLive: "ვალუტის კურსი განახლდა ინტერნეტით.",
+      rateFallback: "გამოიყენება სარეზერვო კურსი; ფასი მიახლოებითია."
+    }
+  };
 
-function calc(){
-  const s = getEl('service').value;
-  const z = getEl('size').value;
-  const c = getEl('condition').value;
-  const l = getEl('level').value;
+  // Xidmətlərin baza qiyməti GEL ilədir.
+  const servicePrices = {
+    polish: 250,
+    chemical: 180,
+    interior: 100,
+    wax: 70,
+    headlights: 80,
+    full: 450
+  };
 
-  let lo = 0, hi = 0;
-  if (s === 'polish' || s === 'both') {
-    lo += base.polish[z][0];
-    hi += base.polish[z][1];
-  }
-  if (s === 'chemical' || s === 'both') {
-    lo += base.chemical[z][0];
-    hi += base.chemical[z][1];
-  }
+  // Ehtiyat məzənnələr: 1 GEL üçün təxmini xarici valyuta.
+  let rates = {
+    GEL: 1,
+    USD: 0.37,
+    AZN: 0.63
+  };
 
-  const cf = ({normal:1, dirty:1.25, hard:1.25})[c] || 1;
-  const lf = (s === 'chemical') ? 1 : ({one:1, two:1.35, three:1.7})[l] || 1;
+  let currentLanguage = "az";
+  let currentCurrency = "GEL";
+  let lastPrice = 0;
+  let hasCalculated = false;
 
-  lo = Math.round(lo * cf * lf);
-  hi = Math.round(hi * cf * lf);
+  const $ = id => document.getElementById(id);
 
-  lastRange = { lo, hi };
-  renderPrice();
-}
+  function translatePage() {
+    const dict = translations[currentLanguage] || translations.az;
 
-function renderPrice(){
-  const cur = getEl('currency').value;
-  const rate = rates[cur] || 1;
-  const sym = symbols[cur] || '';
-  const lo = Math.round(lastRange.lo * rate);
-  const hi = Math.round(lastRange.hi * rate);
-  getEl('price').textContent = sym + ' ' + lo.toLocaleString('en-US') + '–' + hi.toLocaleString('en-US');
-}
+    document.documentElement.lang = currentLanguage;
 
-function language(lang){
-  const dict = T[lang] || T.az;
-  document.documentElement.lang = lang;
-
-  document.querySelectorAll('[data-t]').forEach(function(el){
-    const k = el.dataset.t;
-    if (dict[k] !== undefined) el.textContent = dict[k];
-  });
-  document.querySelectorAll('[data-html]').forEach(function(el){
-    const k = el.dataset.html;
-    if (dict[k] !== undefined) el.innerHTML = dict[k];
-  });
-  ['service','size','condition','level'].forEach(function(id){
-    const el = getEl(id);
-    if (!el) return;
-    Array.from(el.options).forEach(function(o){
-      const k = o.dataset.t;
-      if (k && dict[k] !== undefined) o.textContent = dict[k];
+    document.querySelectorAll("[data-t]").forEach(element => {
+      const key = element.getAttribute("data-t");
+      if (dict[key]) {
+        element.textContent = dict[key];
+      }
     });
-  });
-}
 
-document.addEventListener('DOMContentLoaded', function(){
-  getEl('lang').addEventListener('change', function(e){ language(e.target.value); });
-  getEl('currency').addEventListener('change', renderPrice);
-  getEl('calculate').addEventListener('click', calc);
-  getEl('year').textContent = new Date().getFullYear();
-  language('az');
-  calc();
-});
+    $("rateStatus").textContent = dict.rateFallback;
+
+    if (hasCalculated) {
+      renderPrice();
+    }
+  }
+
+  function formatMoney(amount) {
+    const symbols = {
+      GEL: "₾",
+      USD: "$",
+      AZN: "₼"
+    };
+
+    const converted = amount * rates[currentCurrency];
+    const digits = currentCurrency === "GEL" ? 0 : 2;
+
+    return symbols[currentCurrency] + " " +
+      converted.toLocaleString("en-US", {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+      });
+  }
+
+  function calculatePrice() {
+    const selected = Array.from(
+      document.querySelectorAll(".service input:checked")
+    ).map(input => input.value);
+
+    if (selected.length === 0) {
+      alert(translations[currentLanguage].chooseService);
+      return;
+    }
+
+    let total = 0;
+
+    // "Kompleks detailing" ayrıca paket kimi hesablanır.
+    if (selected.includes("full")) {
+      total += servicePrices.full;
+    } else {
+      selected.forEach(service => {
+        total += servicePrices[service] || 0;
+      });
+    }
+
+    const sizeFactor = Number($("size").value);
+    const conditionFactor = Number($("condition").value);
+    const levelFactor = Number($("level").value);
+
+    lastPrice = total * sizeFactor * conditionFactor * levelFactor;
+    hasCalculated = true;
+
+    $("result").style.display = "block";
+    renderPrice();
+  }
+
+  function renderPrice() {
+    if (!hasCalculated) return;
+    $("price").textContent = formatMoney(lastPrice);
+  }
+
+  async function loadRates() {
+    const dict = translations[currentLanguage] || translations.az;
+    $("rateStatus").textContent = dict.rateLoading;
+
+    try {
+      const response = await fetch(
+        "https://open.er-api.com/v6/latest/GEL"
+      );
+
+      if (!response.ok) throw new Error("Rate request failed");
+
+      const data = await response.json();
+
+      if (
+        data.result !== "success" ||
+        !data.rates ||
+        !data.rates.USD ||
+        !data.rates.AZN
+      ) {
+        throw new Error("Rates unavailable");
+      }
+
+      rates = {
+        GEL: 1,
+        USD: data.rates.USD,
+        AZN: data.rates.AZN
+      };
+
+      $("rateStatus").textContent =
+        translations[currentLanguage].rateLive;
+
+    } catch (error) {
+      // Ehtiyat məzənnələr saxlanılır.
+      $("rateStatus").textContent =
+        translations[currentLanguage].rateFallback;
+    }
+
+    renderPrice();
+  }
+
+  $("language").addEventListener("change", function () {
+    currentLanguage = this.value;
+    translatePage();
+  });
+
+  $("currency").addEventListener("change", function () {
+    currentCurrency = this.value;
+    renderPrice();
+  });
+
+  $("calculate").addEventListener("click", calculatePrice);
+
+  $("year").textContent = new Date().getFullYear();
+
+  translatePage();
+  loadRates();
+
+})();
 </script>
 
 </body>
