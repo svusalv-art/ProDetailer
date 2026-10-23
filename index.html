@@ -755,13 +755,14 @@
     }
   };
 
+  // ===== TBILISI BAZARINA UYĞUN QİYMƏTLƏR (GEL) =====
   const prices = {
-    polish:    { min: 100, max: 150 },
-    chemical:  { min: 100, max: 180 },
-    headlights:{ min: 40,  max: 80 },
-    ceramic:   { min: 250, max: 450 },
-    ppf:       { min: 300, max: 900 },
-    localPaint:{ min: 0,   max: 0, inspectionOnly: true }
+    polish:    { min: 690,  max: 900  },   // tam kuzov polirovkası 690 GEL-dən
+    chemical:  { min: 400,  max: 550  },   // yüngül 400 / orta 500 / ağır 550
+    headlights:{ min: 150,  max: 250  },   // fara polirovkası 150 GEL-dən
+    ceramic:   { min: 800,  max: 1500 },   // material səviyyəsinə görə
+    ppf:       { min: 2500, max: 6900 },   // ön qrup 2500 / tam avtomobil 6900
+    localPaint:{ min: 0,    max: 0, inspectionOnly: true }
   };
 
   const serviceNames = {
@@ -820,7 +821,7 @@
     updatePriceLabels();
   }
 
-  // Kompleks qulluq checkbox-u qısayol kimi işləyir
+  // Kompleks qulluq qısayolu
   const complexCb = document.getElementById("complexCheckbox");
 
   complexCb.addEventListener("change", () => {
@@ -829,7 +830,6 @@
     });
   });
 
-  // Əgər istifadəçi 3 xidməti əl ilə seçibsə, kompleks checkbox-u avtomatik işarələ
   function syncComplexCheckbox() {
     const all = COMPLEX_SERVICES.every(v =>
       document.querySelector(`.svc[value="${v}"]`).checked
@@ -879,7 +879,6 @@
     min *= multiplier;
     max *= multiplier;
 
-    // Endirim yalnız chemical + polish + ceramic birlikdə seçildikdə
     let discountMin = 0;
     let discountMax = 0;
     let discountApplied = false;
@@ -887,7 +886,6 @@
     const allComplexSelected = COMPLEX_SERVICES.every(v => selectedValues.includes(v));
     if (allComplexSelected) {
       discountApplied = true;
-      // Yalnız bu 3 xidmətin dəyəri üzərindən endirim
       const chem = prices.chemical, pol = prices.polish, cer = prices.ceramic;
       const comboMin = (chem.min + pol.min + cer.min) * multiplier;
       const comboMax = (chem.max + pol.max + cer.max) * multiplier;
@@ -976,8 +974,7 @@
   }
 
   applyLanguage();
-  loadExternalRatesSafe = loadExchangeRates;
-  loadExternalRatesSafe();
+  loadExchangeRates();
 </script>
 </body>
 </html>
