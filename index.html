@@ -10,12 +10,8 @@
 
 <style>
 :root {
-  --bg:#0b0b0b;
-  --panel:#151515;
-  --gold:#d6ad62;
-  --gold-light:#f2d69d;
-  --white:#f7f5f0;
-  --muted:#aaa69e;
+  --bg:#0b0b0b; --panel:#151515; --gold:#d6ad62;
+  --gold-light:#f2d69d; --white:#f7f5f0; --muted:#aaa69e;
   --border:#35312a;
 }
 * { box-sizing:border-box; }
@@ -38,6 +34,11 @@ select {
   background:#202020; color:var(--white); border:1px solid #45413a;
   border-radius:7px; padding:10px; max-width:100%;
 }
+.phone-link {
+  color:var(--gold); text-decoration:none; font-weight:bold;
+  white-space:nowrap; font-size:15px;
+}
+.phone-link:hover { color:var(--gold-light); }
 .hero {
   min-height:520px; display:flex; flex-direction:column;
   justify-content:center; align-items:flex-start; padding:65px 7%;
@@ -53,9 +54,12 @@ select {
   display:inline-block; padding:13px 20px; background:var(--gold);
   color:#111; text-decoration:none; font-weight:bold;
   border:1px solid var(--gold); border-radius:7px; cursor:pointer;
+  text-align:center;
 }
 .btn:hover,.calculate:hover { background:var(--gold-light); }
 .btn-outline { background:transparent; color:var(--white); border-color:#a18a61; }
+.btn-whatsapp { background:#25D366; border-color:#25D366; color:#07190d; }
+.btn-whatsapp:hover { background:#62e795; }
 main { width:min(1120px,90%); margin:55px auto; }
 .section-heading { margin-bottom:25px; }
 .section-heading h2 { margin:0 0 8px; font-size:clamp(26px,4vw,36px); line-height:1.2; }
@@ -104,6 +108,7 @@ button { cursor:pointer; }
   border:1px solid var(--gold); background:#1c1913; border-radius:10px;
 }
 #price { color:var(--gold); font-size:clamp(28px,5vw,42px); font-weight:800; }
+.order-button { width:100%; max-width:320px; margin:18px auto 0; }
 .note { color:var(--muted); font-size:13px; }
 .contact-panel {
   text-align:center; padding:35px 20px;
@@ -111,10 +116,16 @@ button { cursor:pointer; }
   border:1px solid var(--border); border-radius:12px; margin-top:32px;
 }
 .contact-panel h2 { margin-top:0; }
+.contact-number {
+  display:block; margin:15px 0; color:var(--gold);
+  font-size:clamp(20px,4vw,27px); font-weight:bold; text-decoration:none;
+}
+.contact-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:18px; }
 footer { text-align:center; padding:25px 15px; color:var(--muted); border-top:1px solid var(--border); font-size:13px; }
 @media(max-width:650px) {
   header { padding:12px 4%; flex-wrap:wrap; }
   .logo { font-size:20px; }
+  .phone-link { font-size:14px; }
   .controls select { padding:8px 6px; font-size:13px; }
   .hero { min-height:450px; padding:45px 6%; background-position:58% center; }
   .hero h1 { font-size:38px; }
@@ -123,12 +134,18 @@ footer { text-align:center; padding:25px 15px; color:var(--muted); border-top:1p
   .service-grid,.services,.fields { grid-template-columns:1fr; }
   .service-card img { height:200px; }
 }
+@media(max-width:390px) {
+  header { gap:9px; }
+  .logo { font-size:18px; }
+  .phone-link { font-size:12px; }
+}
 </style>
 </head>
 
 <body>
 <header>
   <a href="#home" class="logo">ProDetailer<span class="gold">.</span></a>
+  <a class="phone-link" href="tel:+994702133300">☎ +994 70 213 33 00</a>
   <div class="controls">
     <select id="language" aria-label="Language">
       <option value="az">AZ</option>
@@ -225,6 +242,10 @@ footer { text-align:center; padding:25px 15px; color:var(--muted); border-top:1p
     <div id="result" aria-live="polite">
       <div data-t="estimatedPrice">Təxmini qiymət</div>
       <div id="price">—</div>
+      <a id="orderButton" class="btn btn-whatsapp order-button"
+         href="https://wa.me/994702133300"
+         target="_blank" rel="noopener"
+         data-t="orderButton">WhatsApp ilə sifariş ver</a>
       <p class="note" data-t="disclaimer">Son qiymət avtomobilə baxışdan sonra dəqiqləşdirilir.</p>
     </div>
     <p class="note" id="rateStatus" data-t="rateLoading">Valyuta məzənnəsi yüklənir...</p>
@@ -234,8 +255,12 @@ footer { text-align:center; padding:25px 15px; color:var(--muted); border-top:1p
     <div class="eyebrow" data-t="contactEyebrow">ProDetailer · Tbilisi</div>
     <h2 data-t="contactTitle">Avtomobilinizə qulluq üçün hazırıq.</h2>
     <p data-t="contactText">Xidmət və qiymət barədə məlumat almaq, görüş təyin etmək üçün bizimlə əlaqə saxlayın.</p>
-    <a class="btn" href="#calculator" data-t="contactButton">Xidmət seç və qiyməti hesabla</a>
-    <p class="note" data-t="contactNote">Əlaqə məlumatları sayta əlavə edilə bilər.</p>
+    <a class="contact-number" href="tel:+994702133300">☎ +994 70 213 33 00</a>
+    <div class="contact-actions">
+      <a class="btn" href="#calculator" data-t="contactButton">Xidmət seç və qiyməti hesabla</a>
+      <a class="btn btn-whatsapp" href="https://wa.me/994702133300"
+         target="_blank" rel="noopener" data-t="contactWhatsApp">WhatsApp ilə əlaqə</a>
+    </div>
   </section>
 </main>
 
@@ -270,6 +295,7 @@ disclaimer:"Son qiymət avtomobilə baxışdan sonra dəqiqləşdirilir.",
 contactEyebrow:"ProDetailer · Tbilisi",contactTitle:"Avtomobilinizə qulluq üçün hazırıq.",
 contactText:"Xidmət və qiymət barədə məlumat almaq, görüş təyin etmək üçün bizimlə əlaqə saxlayın.",
 contactButton:"Xidmət seç və qiyməti hesabla",contactNote:"Əlaqə məlumatları sayta əlavə edilə bilər.",
+contactWhatsApp:"WhatsApp ilə əlaqə",orderButton:"WhatsApp ilə sifariş ver",
 footer:"Bütün hüquqlar qorunur.",chooseService:"Ən azı bir xidmət seçin.",
 rateLoading:"Valyuta məzənnəsi yüklənir...",rateLive:"Valyuta məzənnəsi internetdən yeniləndi.",
 rateFallback:"Ehtiyat məzənnə istifadə olunur; məbləğ təxminidir."
@@ -292,8 +318,9 @@ levelLabel:"Service level",basic:"Standard",premium:"Premium",calculate:"Calcula
 estimatedPrice:"Estimated price",disclaimer:"Final price is confirmed after vehicle inspection.",
 contactEyebrow:"ProDetailer · Tbilisi",contactTitle:"We are ready to care for your car.",
 contactText:"Contact us for service information, pricing and appointments.",
-contactButton:"Choose services and calculate",contactNote:"Your direct contact details can be added here.",
-footer:"All rights reserved.",chooseService:"Please select at least one service.",
+contactButton:"Choose services and calculate",contactWhatsApp:"Contact via WhatsApp",
+orderButton:"Order via WhatsApp",footer:"All rights reserved.",
+chooseService:"Please select at least one service.",
 rateLoading:"Loading exchange rates...",rateLive:"Exchange rates updated online.",
 rateFallback:"Using fallback rates; displayed prices are estimates."
 },
@@ -315,8 +342,9 @@ levelLabel:"Уровень услуги",basic:"Стандарт",premium:"Пр�
 estimatedPrice:"Примерная стоимость",disclaimer:"Окончательная цена определяется после осмотра автомобиля.",
 contactEyebrow:"ProDetailer · Тбилиси",contactTitle:"Готовы позаботиться о вашем автомобиле.",
 contactText:"Свяжитесь с нами для уточнения услуг, цены и записи.",
-contactButton:"Выбрать услуги и рассчитать цену",contactNote:"Здесь можно добавить ваши контактные данные.",
-footer:"Все права защищены.",chooseService:"Выберите хотя бы одну услугу.",
+contactButton:"Выбрать услуги и рассчитать цену",contactWhatsApp:"Связаться в WhatsApp",
+orderButton:"Заказать через WhatsApp",footer:"Все права защищены.",
+chooseService:"Выберите хотя бы одну услугу.",
 rateLoading:"Загрузка курсов валют...",rateLive:"Курсы валют обновлены через интернет.",
 rateFallback:"Используется резервный курс; цена приблизительная."
 },
@@ -338,7 +366,8 @@ levelLabel:"მომსახურების დონე",basic:"სტა�
 estimatedPrice:"სავარაუდო ფასი",disclaimer:"საბოლოო ფასი განისაზღვრება ავტომობილის დათვალიერების შემდეგ.",
 contactEyebrow:"ProDetailer · თბილისი",contactTitle:"მზად ვართ ვიზრუნოთ თქვენს ავტომობილზე.",
 contactText:"მომსახურების, ფასისა და ჩაწერის შესახებ დაგვიკავშირდით.",
-contactButton:"აირჩიეთ მომსახურება და გამოთვალეთ ფასი",contactNote:"აქ შეგიძლიათ დაამატოთ საკონტაქტო ინფორმაცია.",
+contactButton:"აირჩიეთ მომსახურება და გამოთვალეთ ფასი",
+contactWhatsApp:"WhatsApp-ით დაკავშირება",orderButton:"შეკვეთა WhatsApp-ით",
 footer:"ყველა უფლება დაცულია.",chooseService:"აირჩიეთ მინიმუმ ერთი მომსახურება.",
 rateLoading:"ვალუტის კურსის ჩატვირთვა...",rateLive:"ვალუტის კურსი განახლდა ინტერნეტით.",
 rateFallback:"გამოიყენება სარეზერვო კურსი; ფასი მიახლოებითია."
@@ -346,16 +375,9 @@ rateFallback:"გამოიყენება სარეზერვო კ�
 };
 
 // Bütün baza qiymətləri GEL ilədir.
-// Bunlar nümunə qiymətləridir; real qiymətlərinizə uyğun dəyişə bilərsiniz.
 const servicePrices = {
-  polish:250,
-  chemical:180,
-  interior:100,
-  wax:70,
-  headlights:80,
-  ceramic:500,
-  ppf:1200,
-  full:450
+  polish:250, chemical:180, interior:100, wax:70,
+  headlights:80, ceramic:500, ppf:1200, full:450
 };
 
 let rates = { GEL:1, USD:0.37, AZN:0.63 };
@@ -363,6 +385,7 @@ let currentLanguage = "az";
 let currentCurrency = "GEL";
 let lastPrice = 0;
 let hasCalculated = false;
+let rateLoaded = false;
 
 const $ = id => document.getElementById(id);
 
@@ -407,8 +430,6 @@ function calculatePrice() {
     return;
   }
 
-  // Seçilmiş bütün xidmətlərin qiymətini topla.
-  // Yeni xidmətlər də servicePrices obyektindən oxunur.
   let total = selected.reduce((sum, service) => {
     return sum + (servicePrices[service] || 0);
   }, 0);
@@ -421,6 +442,27 @@ function calculatePrice() {
   hasCalculated = true;
   $("result").style.display = "block";
   renderPrice();
+
+  // WhatsApp mesajı seçilmiş xidmətlər və hesablanmış qiymətlə hazırlanır.
+  const selectedNames = selected.map(key => dict[key] || key);
+  const vehicle = $("size").selectedOptions[0].textContent;
+  const condition = $("condition").selectedOptions[0].textContent;
+  const level = $("level").selectedOptions[0].textContent;
+
+  const message = [
+    "ProDetailer — " + dict.contactTitle,
+    "",
+    dict.servicesHeading + ": " + selectedNames.join(", "),
+    dict.sizeLabel + ": " + vehicle,
+    dict.conditionLabel + ": " + condition,
+    dict.levelLabel + ": " + level,
+    dict.estimatedPrice + ": " + formatMoney(total),
+    "",
+    "Telefon: +994 70 213 33 00"
+  ].join("\n");
+
+  $("orderButton").href =
+    "https://wa.me/994702133300?text=" + encodeURIComponent(message);
 }
 
 function renderPrice() {
@@ -430,11 +472,9 @@ function renderPrice() {
 
 function updateRateStatus() {
   if (!$("rateStatus")) return;
-  $("rateStatus").textContent =
-    translations[currentLanguage][rateLoaded ? "rateLive" : "rateFallback"];
+  const dict = translations[currentLanguage] || translations.az;
+  $("rateStatus").textContent = dict[rateLoaded ? "rateLive" : "rateFallback"];
 }
-
-let rateLoaded = false;
 
 async function loadRates() {
   try {
@@ -449,7 +489,6 @@ async function loadRates() {
     rates = { GEL:1, USD:data.rates.USD, AZN:data.rates.AZN };
     rateLoaded = true;
   } catch (error) {
-    // İnternet məzənnəsi alınmasa, ehtiyat rəqəmlər işlədilir.
     rateLoaded = false;
   }
 
@@ -468,6 +507,9 @@ $("currency").addEventListener("change", function () {
   currentCurrency = this.value;
   updateServicePrices();
   renderPrice();
+
+  // Valyuta dəyişdikdə WhatsApp mesajındakı qiyməti də yenilə.
+  if (hasCalculated) calculatePrice();
 });
 
 $("calculate").addEventListener("click", calculatePrice);
