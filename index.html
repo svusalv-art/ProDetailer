@@ -195,8 +195,28 @@
       border: 1px solid var(--border);
       border-radius: 7px;
       font-size: 14px;
+      transition: border-color .2s, background .2s;
     }
     .check-option input { accent-color: var(--gold); margin-top: 5px; }
+
+    .check-option.complex-option {
+      border-color: var(--gold);
+      background: #1d180e;
+      grid-column: 1 / -1;
+    }
+    .check-option.complex-option span { font-weight: bold; color: var(--gold); }
+    .check-option .discount-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: #111;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 1px 8px;
+      border-radius: 20px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
     .result {
       margin-top: 18px;
       padding: 20px;
@@ -206,6 +226,16 @@
     }
     .result-price { color: var(--gold); font-size: clamp(26px, 4vw, 36px); font-weight: 900; }
     .result small { display: block; color: #ccc; margin: 7px 0 15px; }
+    .discount-line {
+      margin: 8px 0 12px;
+      padding: 10px 14px;
+      background: #2a1e0e;
+      border: 1px dashed #5e4b27;
+      border-radius: 7px;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: bold;
+    }
 
     .contact-grid {
       display: grid;
@@ -222,95 +252,10 @@
       font-size: 13px;
     }
 
-    /* Paket bölməsi */
-    .packages-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-    .package-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      transition: border-color .2s, transform .2s;
-    }
-    .package-card:hover { border-color: var(--gold); transform: translateY(-3px); }
-    .package-card.featured {
-      border-color: var(--gold);
-      background: linear-gradient(180deg, #1a1710 0%, #151515 100%);
-    }
-    .package-badge {
-      position: absolute;
-      top: -12px;
-      right: 20px;
-      background: var(--gold);
-      color: #111;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 4px 12px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .package-card h3 { margin: 0 0 8px; font-size: 22px; }
-    .package-card .package-desc { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
-    .package-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 18px;
-      flex: 1;
-    }
-    .package-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 7px 0;
-      font-size: 14px;
-      color: #ddd;
-      border-bottom: 1px solid #232323;
-    }
-    .package-list li:last-child { border-bottom: none; }
-    .package-list li::before {
-      content: "✓";
-      color: var(--gold);
-      font-weight: bold;
-      flex-shrink: 0;
-    }
-    .package-price {
-      margin: 8px 0 16px;
-      color: var(--gold);
-      font-size: 22px;
-      font-weight: 900;
-    }
-    .package-price .package-old {
-      color: #777;
-      font-size: 14px;
-      font-weight: normal;
-      text-decoration: line-through;
-      margin-left: 8px;
-    }
-    .package-discount {
-      display: inline-block;
-      background: #2a1e0e;
-      color: var(--gold);
-      border: 1px solid #5e4b27;
-      border-radius: 20px;
-      padding: 3px 12px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 14px;
-    }
-
     @media (max-width: 900px) {
       .services-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .nav { justify-content: center; }
       .nav-right { justify-content: center; }
-      .packages-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 650px) {
       .section { padding: 55px 0; }
@@ -325,7 +270,6 @@
       .nav-links { justify-content: center; }
       .nav-right { gap: 10px; }
       .panel { padding: 18px; }
-      .package-card { padding: 22px; }
     }
   </style>
 </head>
@@ -338,7 +282,6 @@
     <div class="nav-right">
       <nav class="nav-links">
         <a href="#services" data-i18n="navServices">Xidmətlər</a>
-        <a href="#packages" data-i18n="navPackages">Paketlər</a>
         <a href="#portfolio" data-i18n="navPortfolio">İşlərimiz</a>
         <a href="#calculator" data-i18n="navCalculator">Qiymət</a>
         <a href="#contact" data-i18n="navContact">Əlaqə</a>
@@ -452,52 +395,6 @@
     </div>
   </section>
 
-  <section class="section" id="packages">
-    <div class="container">
-      <div class="section-heading">
-        <h2 data-i18n="packagesHeading">Kompleks detailing paketləri</h2>
-        <p data-i18n="packagesIntro">Kimyəvi təmizlik, 3 mərhələli polirovka və keramika örtüyü — birlikdə daha sərfəli.</p>
-      </div>
-
-      <div class="packages-grid">
-        <article class="package-card featured">
-          <span class="package-badge" data-i18n="packageBadge">Endirimli</span>
-          <h3 data-i18n="packageFullTitle">Full Detailing Paketi</h3>
-          <p class="package-desc" data-i18n="packageFullDesc">Ən yüksək səviyyəli kompleks qulluq — salon, kuzov və qoruma.</p>
-          <ul class="package-list">
-            <li data-i18n="packageItemChemical">Kimyəvi təmizlik</li>
-            <li data-i18n="packageItemPolish3">3 mərhələli polirovka</li>
-            <li data-i18n="packageItemCeramic">Keramika örtüyü</li>
-          </ul>
-          <div class="package-price">
-            <span data-package-price="full">—</span>
-          </div>
-          <div class="package-discount" data-package-discount="full">—</div>
-          <a class="btn btn-primary" href="#calculator" data-i18n="packageSelectBtn">Kalkulyatorda seç</a>
-        </article>
-
-        <article class="package-card">
-          <h3 data-i18n="packageCustomTitle">Fərdi Paket</h3>
-          <p class="package-desc" data-i18n="packageCustomDesc">Ehtiyacınıza uyğun xidmətləri özünüz seçin.</p>
-          <ul class="package-list">
-            <li data-i18n="packageCustomItem1">İstənilən xidmət kombinasiyası</li>
-            <li data-i18n="packageCustomItem2">Avtomobilin ölçüsünə uyğun qiymət</li>
-            <li data-i18n="packageCustomItem3">Vəziyyətə görə əmsal tətbiqi</li>
-          </ul>
-          <div class="package-price">
-            <span data-i18n="packageCustomPrice">Fərdi hesablama</span>
-          </div>
-          <a class="btn btn-outline" href="#calculator" data-i18n="packageGoCalculator">Kalkulyatora keç</a>
-        </article>
-      </div>
-
-      <div class="price-note" data-i18n="packageNote">
-        Full Detailing Paketində kimyəvi təmizlik, 3 mərhələli polirovka və keramika birlikdə seçildikdə
-        avtomatik endirim tətbiq olunur. Digər xidmətlərə endirim şamil edilmir.
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="portfolio">
     <div class="container">
       <div class="section-heading">
@@ -554,13 +451,23 @@
           <h3 data-i18n="chooseServices">Xidmətləri seçin</h3>
 
           <div class="checkbox-grid">
-            <label class="check-option"><input type="checkbox" value="polish"> <span data-i18n="optPolish">Kuzov polirovkası</span></label>
-            <label class="check-option"><input type="checkbox" value="chemical"> <span data-i18n="optChemical">Kimyəvi təmizlik</span></label>
+            <label class="check-option"><input type="checkbox" value="polish" class="svc"> <span data-i18n="optPolish">Kuzov polirovkası</span></label>
+            <label class="check-option"><input type="checkbox" value="chemical" class="svc"> <span data-i18n="optChemical">Kimyəvi təmizlik</span></label>
             <label class="check-option"><input type="checkbox" value="headlights"> <span data-i18n="optHeadlights">Fara bərpası</span></label>
-            <label class="check-option"><input type="checkbox" value="ceramic"> <span data-i18n="optCeramic">Keramika örtüyü</span></label>
+            <label class="check-option"><input type="checkbox" value="ceramic" class="svc"> <span data-i18n="optCeramic">Keramika örtüyü</span></label>
             <label class="check-option"><input type="checkbox" value="ppf"> <span data-i18n="optPpf">PPF qoruması</span></label>
             <label class="check-option"><input type="checkbox" value="localPaint"> <span data-i18n="optLocalPaint">Lokal boya korreksiyası</span></label>
-            <label class="check-option"><input type="checkbox" value="full"> <span data-i18n="optFull">Kompleks qulluq</span></label>
+
+            <label class="check-option complex-option">
+              <input type="checkbox" value="complex" id="complexCheckbox">
+              <span data-i18n="optComplex">Kompleks qulluq</span>
+              <span class="discount-tag">-25%</span>
+            </label>
+          </div>
+
+          <div class="price-note" style="margin-top:18px" data-i18n="complexNote">
+            Kompleks qulluq = kimyəvi təmizlik + 3 mərhələli polirovka + keramika örtüyü.
+            Bu üç xidmət birlikdə seçildikdə 25% endirim tətbiq olunur.
           </div>
 
           <div class="field" style="margin-top:20px">
@@ -603,6 +510,7 @@
           <div id="result" class="result" hidden>
             <div data-i18n="estimatedRange">Təxmini qiymət aralığı</div>
             <div class="result-price" id="price">—</div>
+            <div class="discount-line" id="discountLine" hidden></div>
             <small data-i18n="inspectionNote">Yekun qiymət baxışdan sonra təsdiqlənir.</small>
             <a class="btn btn-primary" id="whatsappBtn" href="https://wa.me/994702133300" target="_blank" rel="noopener" data-i18n="whatsappBtn">
               WhatsApp ilə soruş
@@ -651,7 +559,7 @@
 <script>
   const translations = {
     az: {
-      navServices:"Xidmətlər", navPackages:"Paketlər", navPortfolio:"İşlərimiz", navCalculator:"Qiymət", navContact:"Əlaqə",
+      navServices:"Xidmətlər", navPortfolio:"İşlərimiz", navCalculator:"Qiymət", navContact:"Əlaqə",
       eyebrow:"Premium Auto Care · Tbilisi",
       heroTitle:'Avtomobilinizə <span class="gold">premium qulluq.</span>',
       heroSubtitle:"Peşəkar polirovka, kimyəvi təmizlik, keramika örtüyü və PPF qoruması. Avtomobilinizin görünüşünü bərpa edin və dəyərini qoruyun.",
@@ -664,22 +572,6 @@
       localPaintTitle:"Lokal boya korreksiyası", localPaintDesc:"Kiçik cızıq və zədələrin peşəkar bərpası.",
       priceAfterInspection:"Qiymət baxışdan sonra",
       priceNote:"Saytdakı qiymətlər ilkin aralıqlardır. Yekun qiymət avtomobilin vəziyyəti, ölçüsü və işin həcmi yerində yoxlanıldıqdan sonra təsdiqlənir.",
-      packagesHeading:"Kompleks detailing paketləri", packagesIntro:"Kimyəvi təmizlik, 3 mərhələli polirovka və keramika örtüyü — birlikdə daha sərfəli.",
-      packageBadge:"Endirimli",
-      packageFullTitle:"Full Detailing Paketi",
-      packageFullDesc:"Ən yüksək səviyyəli kompleks qulluq — salon, kuzov və qoruma.",
-      packageItemChemical:"Kimyəvi təmizlik",
-      packageItemPolish3:"3 mərhələli polirovka",
-      packageItemCeramic:"Keramika örtüyü",
-      packageSelectBtn:"Kalkulyatorda seç",
-      packageCustomTitle:"Fərdi Paket",
-      packageCustomDesc:"Ehtiyacınıza uyğun xidmətləri özünüz seçin.",
-      packageCustomItem1:"İstənilən xidmət kombinasiyası",
-      packageCustomItem2:"Avtomobilin ölçüsünə uyğun qiymət",
-      packageCustomItem3:"Vəziyyətə görə əmsal tətbiqi",
-      packageCustomPrice:"Fərdi hesablama",
-      packageGoCalculator:"Kalkulyatora keç",
-      packageNote:"Full Detailing Paketində kimyəvi təmizlik, 3 mərhələli polirovka və keramika birlikdə seçildikdə avtomatik endirim tətbiq olunur. Digər xidmətlərə endirim şamil edilmir.",
       portfolioHeading:"Gördüyümüz işlər", portfolioIntro:"Polirovka, salon təmizliyi və avtomobil qoruma işlərindən nümunələr.",
       portfolioPolish:"Kuzov polirovkası", portfolioPolishDesc:"Parıltının və görünüşün bərpası",
       portfolioClean:"Dərin təmizlik", portfolioCleanDesc:"Avtomobilə ətraflı qulluq",
@@ -688,7 +580,8 @@
       calculatorTitle:"Qiymət kalkulyatoru", calculatorIntro:"Xidmətləri seçin və ilkin qiymət aralığını hesablayın.",
       chooseServices:"Xidmətləri seçin", optPolish:"Kuzov polirovkası", optChemical:"Kimyəvi təmizlik",
       optHeadlights:"Fara bərpası",
-      optCeramic:"Keramika örtüyü", optPpf:"PPF qoruması", optLocalPaint:"Lokal boya korreksiyası", optFull:"Kompleks qulluq",
+      optCeramic:"Keramika örtüyü", optPpf:"PPF qoruması", optLocalPaint:"Lokal boya korreksiyası", optComplex:"Kompleks qulluq",
+      complexNote:"Kompleks qulluq = kimyəvi təmizlik + 3 mərhələli polirovka + keramika örtüyü. Bu üç xidmət birlikdə seçildikdə 25% endirim tətbiq olunur.",
       carSizeLabel:"Avtomobilin ölçüsü", sizeSedan:"Sedan / kiçik avtomobil",
       sizeSuv:"SUV / krossover", sizeLarge:"Böyük SUV / minivan",
       conditionLabel:"Avtomobilin vəziyyəti", conditionNormal:"Normal",
@@ -706,18 +599,17 @@
       contactCtaButton:"WhatsApp-da əlaqə", footerText:"Bütün hüquqlar qorunur.",
       noServices:"Zəhmət olmasa, ən azı bir xidmət seçin.",
       waMessage:"Salam! ProDetailer saytındakı kalkulyatordan istifadə etdim. Seçilən xidmətlər: ",
-      waPackageLine:"\nPaket endirimi: ",
-      waDiscount:"\nEndirim: ",
+      waDiscountLine:"\nKompleks endirim (25%): ",
+      waFullPrice:"\nEndirimsiz qiymət: ",
+      waFinalPrice:"\nEndirimli qiymət: ",
       carLabel:"Avtomobil ölçüsü", conditionLabelShort:"Vəziyyət", levelLabelShort:"Səviyyə",
       estimatedLabel:"Təxmini qiymət",
       inspectionOnly:"Baxışdan sonra",
-      packageDiscountLabel:"Paket endirimi",
-      packageBaseLabel:"Paket qiyməti (endirimsiz)",
-      packageFinalLabel:"Paket qiyməti (endirimlə)",
-      discountPercent:"10% endirim"
+      discountLabel:"Kompleks endirim (25%)",
+      discountAmountLabel:"Endirim məbləği"
     },
     en: {
-      navServices:"Services", navPackages:"Packages", navPortfolio:"Our Work", navCalculator:"Pricing", navContact:"Contact",
+      navServices:"Services", navPortfolio:"Our Work", navCalculator:"Pricing", navContact:"Contact",
       eyebrow:"Premium Auto Care · Tbilisi",
       heroTitle:'Premium <span class="gold">care for your car.</span>',
       heroSubtitle:"Professional paint correction, deep cleaning, ceramic coating and PPF protection. Restore your car's appearance and protect its value.",
@@ -730,22 +622,6 @@
       localPaintTitle:"Local paint correction", localPaintDesc:"Professional repair of small scratches and damage.",
       priceAfterInspection:"Price after inspection",
       priceNote:"Prices shown are preliminary ranges. The final price is confirmed after inspecting the vehicle, its condition and the scope of work.",
-      packagesHeading:"Full detailing packages", packagesIntro:"Deep cleaning, 3-stage polishing and ceramic coating — better together.",
-      packageBadge:"Discounted",
-      packageFullTitle:"Full Detailing Package",
-      packageFullDesc:"Top-level comprehensive care — interior, paint and protection.",
-      packageItemChemical:"Deep cleaning",
-      packageItemPolish3:"3-stage polishing",
-      packageItemCeramic:"Ceramic coating",
-      packageSelectBtn:"Select in calculator",
-      packageCustomTitle:"Custom Package",
-      packageCustomDesc:"Choose the services you need yourself.",
-      packageCustomItem1:"Any service combination",
-      packageCustomItem2:"Price based on vehicle size",
-      packageCustomItem3:"Condition multiplier applied",
-      packageCustomPrice:"Custom calculation",
-      packageGoCalculator:"Go to calculator",
-      packageNote:"When deep cleaning, 3-stage polishing and ceramic coating are selected together in the Full Detailing Package, an automatic discount is applied. No discount applies to other services.",
       portfolioHeading:"Our Work", portfolioIntro:"Examples of polishing, interior cleaning and vehicle protection.",
       portfolioPolish:"Paint polishing", portfolioPolishDesc:"Restoring gloss and appearance",
       portfolioClean:"Deep cleaning", portfolioCleanDesc:"Detailed vehicle care",
@@ -754,7 +630,8 @@
       calculatorTitle:"Price calculator", calculatorIntro:"Select services to get a preliminary price range.",
       chooseServices:"Choose services", optPolish:"Paint polishing", optChemical:"Deep cleaning",
       optHeadlights:"Headlight restoration",
-      optCeramic:"Ceramic coating", optPpf:"PPF protection", optLocalPaint:"Local paint correction", optFull:"Full detailing",
+      optCeramic:"Ceramic coating", optPpf:"PPF protection", optLocalPaint:"Local paint correction", optComplex:"Full complex care",
+      complexNote:"Complex care = deep cleaning + 3-stage polishing + ceramic coating. When these three services are selected together, a 25% discount applies.",
       carSizeLabel:"Vehicle size", sizeSedan:"Sedan / small car", sizeSuv:"SUV / crossover", sizeLarge:"Large SUV / minivan",
       conditionLabel:"Vehicle condition", conditionNormal:"Normal", conditionMedium:"Moderately dirty / scratched", conditionHard:"Very dirty / heavily scratched",
       levelLabel:"Service level", levelStandard:"Standard", levelPremium:"Premium / more detailed",
@@ -770,17 +647,16 @@
       contactCtaButton:"Contact on WhatsApp", footerText:"All rights reserved.",
       noServices:"Please select at least one service.",
       waMessage:"Hello! I used the ProDetailer website calculator. Selected services: ",
-      waPackageLine:"\nPackage discount: ",
-      waDiscount:"\nDiscount: ",
+      waDiscountLine:"\nComplex discount (25%): ",
+      waFullPrice:"\nPrice before discount: ",
+      waFinalPrice:"\nPrice with discount: ",
       carLabel:"Vehicle size", conditionLabelShort:"Condition", levelLabelShort:"Level", estimatedLabel:"Estimated price",
       inspectionOnly:"After inspection",
-      packageDiscountLabel:"Package discount",
-      packageBaseLabel:"Package price (before discount)",
-      packageFinalLabel:"Package price (with discount)",
-      discountPercent:"10% discount"
+      discountLabel:"Complex discount (25%)",
+      discountAmountLabel:"Discount amount"
     },
     ru: {
-      navServices:"Услуги", navPackages:"Пакеты", navPortfolio:"Наши работы", navCalculator:"Цены", navContact:"Контакты",
+      navServices:"Услуги", navPortfolio:"Наши работы", navCalculator:"Цены", navContact:"Контакты",
       eyebrow:"Премиальный уход за авто · Тбилиси",
       heroTitle:'Премиальный <span class="gold">уход за автомобилем.</span>',
       heroSubtitle:"Профессиональная полировка, химчистка, керамическое покрытие и защита PPF. Восстановите внешний вид и защитите стоимость автомобиля.",
@@ -793,22 +669,6 @@
       localPaintTitle:"Локальная коррекция краски", localPaintDesc:"Профессиональное восстановление мелких царапин и повреждений.",
       priceAfterInspection:"Цена после осмотра",
       priceNote:"Указаны предварительные диапазоны цен. Окончательная стоимость подтверждается после осмотра автомобиля.",
-      packagesHeading:"Комплексные пакеты детейлинга", packagesIntro:"Химчистка, 3-этапная полировка и керамика — вместе выгоднее.",
-      packageBadge:"Со скидкой",
-      packageFullTitle:"Пакет Full Detailing",
-      packageFullDesc:"Комплексный уход высшего уровня — салон, кузов и защита.",
-      packageItemChemical:"Химчистка",
-      packageItemPolish3:"3-этапная полировка",
-      packageItemCeramic:"Керамическое покрытие",
-      packageSelectBtn:"Выбрать в калькуляторе",
-      packageCustomTitle:"Индивидуальный пакет",
-      packageCustomDesc:"Выберите нужные вам услуги самостоятельно.",
-      packageCustomItem1:"Любая комбинация услуг",
-      packageCustomItem2:"Цена в зависимости от размера авто",
-      packageCustomItem3:"Применение коэффициента состояния",
-      packageCustomPrice:"Индивидуальный расчёт",
-      packageGoCalculator:"Перейти к калькулятору",
-      packageNote:"При одновременном выборе химчистки, 3-этапной полировки и керамики в пакете Full Detailing автоматически применяется скидка. На другие услуги скидка не распространяется.",
       portfolioHeading:"Наши работы", portfolioIntro:"Примеры полировки, чистки салона и защиты автомобиля.",
       portfolioPolish:"Полировка кузова", portfolioPolishDesc:"Восстановление блеска и внешнего вида",
       portfolioClean:"Глубокая чистка", portfolioCleanDesc:"Детальный уход за автомобилем",
@@ -817,7 +677,8 @@
       calculatorTitle:"Калькулятор цены", calculatorIntro:"Выберите услуги, чтобы получить предварительный диапазон цен.",
       chooseServices:"Выберите услуги", optPolish:"Полировка кузова", optChemical:"Химчистка",
       optHeadlights:"Восстановление фар",
-      optCeramic:"Керамическое покрытие", optPpf:"Защита PPF", optLocalPaint:"Локальная коррекция краски", optFull:"Комплексный уход",
+      optCeramic:"Керамическое покрытие", optPpf:"Защита PPF", optLocalPaint:"Локальная коррекция краски", optComplex:"Комплексный уход",
+      complexNote:"Комплексный уход = химчистка + 3-этапная полировка + керамика. При выборе этих трёх услуг вместе применяется скидка 25%.",
       carSizeLabel:"Размер автомобиля", sizeSedan:"Седан / небольшой автомобиль",
       sizeSuv:"SUV / кроссовер", sizeLarge:"Большой SUV / минивэн",
       conditionLabel:"Состояние автомобиля", conditionNormal:"Нормальное",
@@ -835,17 +696,16 @@
       contactCtaButton:"Написать в WhatsApp", footerText:"Все права защищены.",
       noServices:"Пожалуйста, выберите хотя бы одну услугу.",
       waMessage:"Здравствуйте! Я воспользовался калькулятором ProDetailer. Выбранные услуги: ",
-      waPackageLine:"\nСкидка за пакет: ",
-      waDiscount:"\nСкидка: ",
+      waDiscountLine:"\nКомплексная скидка (25%): ",
+      waFullPrice:"\nЦена без скидки: ",
+      waFinalPrice:"\nЦена со скидкой: ",
       carLabel:"Размер автомобиля", conditionLabelShort:"Состояние", levelLabelShort:"Уровень", estimatedLabel:"Примерная цена",
       inspectionOnly:"После осмотра",
-      packageDiscountLabel:"Скидка за пакет",
-      packageBaseLabel:"Цена пакета (без скидки)",
-      packageFinalLabel:"Цена пакета (со скидкой)",
-      discountPercent:"Скидка 10%"
+      discountLabel:"Комплексная скидка (25%)",
+      discountAmountLabel:"Сумма скидки"
     },
     ka: {
-      navServices:"სერვისები", navPackages:"პაკეტები", navPortfolio:"ჩვენი ნამუშევრები", navCalculator:"ფასები", navContact:"კონტაქტი",
+      navServices:"სერვისები", navPortfolio:"ჩვენი ნამუშევრები", navCalculator:"ფასები", navContact:"კონტაქტი",
       eyebrow:"პრემიუმ ავტო მოვლა · თბილისი",
       heroTitle:'პრემიუმ <span class="gold">მოვლა თქვენი ავტომობილისთვის.</span>',
       heroSubtitle:"პროფესიონალური პოლირება, ქიმწმენდა, კერამიკული საფარი და PPF დაცვა. აღადგინეთ ავტომობილის იერსახე და დაიცავით მისი ღირებულება.",
@@ -858,22 +718,6 @@
       localPaintTitle:"ლოკალური საღებავის კორექცია", localPaintDesc:"მცირე ნაკაწრებისა და დაზიანებების პროფესიონალური აღდგენა.",
       priceAfterInspection:"ფასი დათვალიერების შემდეგ",
       priceNote:"მითითებული ფასები წინასწარი დიაპაზონია. საბოლოო ფასი ავტომობილის შემოწმების შემდეგ დასტურდება.",
-      packagesHeading:"კომპლექსური დეტეილინგ პაკეტები", packagesIntro:"ქიმწმენდა, 3-ეტაპიანი პოლირება და კერამიკა — ერთად უფრო ხელსაყრელი.",
-      packageBadge:"ფასდაკლებით",
-      packageFullTitle:"Full Detailing პაკეტი",
-      packageFullDesc:"უმაღლესი დონის კომპლექსური მოვლა — სალონი, ძარა და დაცვა.",
-      packageItemChemical:"ქიმწმენდა",
-      packageItemPolish3:"3-ეტაპიანი პოლირება",
-      packageItemCeramic:"კერამიკული საფარი",
-      packageSelectBtn:"კალკულატორში არჩევა",
-      packageCustomTitle:"ინდივიდუალური პაკეტი",
-      packageCustomDesc:"თავად აირჩიეთ საჭირო სერვისები.",
-      packageCustomItem1:"ნებისმიერი სერვისის კომბინაცია",
-      packageCustomItem2:"ფასი ავტომობილის ზომის მიხედვით",
-      packageCustomItem3:"მდგომარეობის კოეფიციენტის გამოყენება",
-      packageCustomPrice:"ინდივიდუალური გაანგარიშება",
-      packageGoCalculator:"კალკულატორზე გადასვლა",
-      packageNote:"Full Detailing პაკეტში ქიმწმენდის, 3-ეტაპიანი პოლირებისა და კერამიკის ერთად არჩევისას ავტომატურად გამოიყენება ფასდაკლება. სხვა სერვისებზე ფასდაკლება არ ვრცელდება.",
       portfolioHeading:"ჩვენი ნამუშევრები", portfolioIntro:"პოლირების, სალონის წმენდისა და ავტომობილის დაცვის მაგალითები.",
       portfolioPolish:"ძარის პოლირება", portfolioPolishDesc:"ბზინვარებისა და იერსახის აღდგენა",
       portfolioClean:"ღრმა წმენდა", portfolioCleanDesc:"ავტომობილის დეტალური მოვლა",
@@ -882,7 +726,8 @@
       calculatorTitle:"ფასის კალკულატორი", calculatorIntro:"აირჩიეთ სერვისები წინასწარი ფასის დიაპაზონის მისაღებად.",
       chooseServices:"აირჩიეთ სერვისები", optPolish:"ძარის პოლირება", optChemical:"ქიმწმენდა",
       optHeadlights:"ფარების აღდგენა",
-      optCeramic:"კერამიკული საფარი", optPpf:"PPF დაცვა", optLocalPaint:"ლოკალური საღებავის კორექცია", optFull:"სრული მოვლა",
+      optCeramic:"კერამიკული საფარი", optPpf:"PPF დაცვა", optLocalPaint:"ლოკალური საღებავის კორექცია", optComplex:"კომპლექსური მოვლა",
+      complexNote:"კომპლექსური მოვლა = ქიმწმენდა + 3-ეტაპიანი პოლირება + კერამიკული საფარი. ამ სამი სერვისის ერთად არჩევისას გამოიყენება 25% ფასდაკლება.",
       carSizeLabel:"ავტომობილის ზომა", sizeSedan:"სედანი / პატარა ავტომობილი",
       sizeSuv:"SUV / კროსოვერი", sizeLarge:"დიდი SUV / მინივენი",
       conditionLabel:"ავტომობილის მდგომარეობა", conditionNormal:"ნორმალური",
@@ -900,27 +745,23 @@
       contactCtaButton:"WhatsApp-ზე დაკავშირება", footerText:"ყველა უფლება დაცულია.",
       noServices:"გთხოვთ, აირჩიოთ მინიმუმ ერთი სერვისი.",
       waMessage:"გამარჯობა! გამოვიყენე ProDetailer-ის კალკულატორი. არჩეული სერვისები: ",
-      waPackageLine:"\nპაკეტის ფასდაკლება: ",
-      waDiscount:"\nფასდაკლება: ",
+      waDiscountLine:"\nკომპლექსური ფასდაკლება (25%): ",
+      waFullPrice:"\nფასი ფასდაკლების გარეშე: ",
+      waFinalPrice:"\nფასი ფასდაკლებით: ",
       carLabel:"ავტომობილის ზომა", conditionLabelShort:"მდგომარეობა", levelLabelShort:"დონე", estimatedLabel:"სავარაუდო ფასი",
       inspectionOnly:"დათვალიერების შემდეგ",
-      packageDiscountLabel:"პაკეტის ფასდაკლება",
-      packageBaseLabel:"პაკეტის ფასი (ფასდაკლების გარეშე)",
-      packageFinalLabel:"პაკეტის ფასი (ფასდაკლებით)",
-      discountPercent:"10% ფასდაკლება"
+      discountLabel:"კომპლექსური ფასდაკლება (25%)",
+      discountAmountLabel:"ფასდაკლების ოდენობა"
     }
   };
 
-  // დროებითი ფასების დიაპაზონები GEL-ში.
-  // localPaint ფასდება მხოლოდ ბაზის შემოწმების შემდეგ.
   const prices = {
     polish:    { min: 100, max: 150 },
     chemical:  { min: 100, max: 180 },
     headlights:{ min: 40,  max: 80 },
     ceramic:   { min: 250, max: 450 },
     ppf:       { min: 300, max: 900 },
-    localPaint:{ min: 0,   max: 0, inspectionOnly: true },
-    full:      { min: 350, max: 650 }
+    localPaint:{ min: 0,   max: 0, inspectionOnly: true }
   };
 
   const serviceNames = {
@@ -929,11 +770,11 @@
     headlights: "optHeadlights",
     ceramic: "optCeramic",
     ppf: "optPpf",
-    localPaint: "optLocalPaint",
-    full: "optFull"
+    localPaint: "optLocalPaint"
   };
 
-  const PACKAGE_DISCOUNT = 0.10; // 10% endirim
+  const DISCOUNT = 0.25;
+  const COMPLEX_SERVICES = ["chemical", "polish", "ceramic"];
 
   let language = "az";
   let currency = "GEL";
@@ -965,29 +806,6 @@
         el.textContent = formatMoney(item.min) + " – " + formatMoney(item.max);
       }
     });
-    updatePackageLabels();
-  }
-
-  function calcPackagePrices() {
-    // Paketə daxil olan üç xidmətin baza qiymətləri
-    const baseMin = prices.chemical.min + prices.polish.min + prices.ceramic.min;
-    const baseMax = prices.chemical.max + prices.polish.max + prices.ceramic.max;
-    const minAfter = baseMin * (1 - PACKAGE_DISCOUNT);
-    const maxAfter = baseMax * (1 - PACKAGE_DISCOUNT);
-    return { baseMin, baseMax, minAfter, maxAfter };
-  }
-
-  function updatePackageLabels() {
-    const { baseMin, baseMax, minAfter, maxAfter } = calcPackagePrices();
-    const priceEl = document.querySelector('[data-package-price="full"]');
-    const discountEl = document.querySelector('[data-package-discount="full"]');
-    if (priceEl) {
-      priceEl.innerHTML = formatMoney(Math.round(minAfter)) + " – " + formatMoney(Math.round(maxAfter)) +
-        '<span class="package-old">' + formatMoney(Math.round(baseMin)) + " – " + formatMoney(Math.round(baseMax)) + '</span>';
-    }
-    if (discountEl) {
-      discountEl.textContent = t("discountPercent");
-    }
   }
 
   function applyLanguage() {
@@ -1002,9 +820,32 @@
     updatePriceLabels();
   }
 
+  // Kompleks qulluq checkbox-u qısayol kimi işləyir
+  const complexCb = document.getElementById("complexCheckbox");
+
+  complexCb.addEventListener("change", () => {
+    document.querySelectorAll(".svc").forEach(cb => {
+      cb.checked = complexCb.checked;
+    });
+  });
+
+  // Əgər istifadəçi 3 xidməti əl ilə seçibsə, kompleks checkbox-u avtomatik işarələ
+  function syncComplexCheckbox() {
+    const all = COMPLEX_SERVICES.every(v =>
+      document.querySelector(`.svc[value="${v}"]`).checked
+    );
+    complexCb.checked = all;
+  }
+
+  document.querySelectorAll(".svc").forEach(cb => {
+    cb.addEventListener("change", syncComplexCheckbox);
+  });
+
   function calculate() {
-    const selected = [...document.querySelectorAll('.checkbox-grid input:checked')];
+    const selected = [...document.querySelectorAll('.checkbox-grid input:checked')]
+      .filter(i => i.value !== "complex");
     const result = document.getElementById("result");
+    const discountLine = document.getElementById("discountLine");
 
     if (!selected.length) {
       alert(t("noServices"));
@@ -1038,43 +879,61 @@
     min *= multiplier;
     max *= multiplier;
 
-    // Paket endirimi yalnız chemical + polish + ceramic birlikdə seçildikdə
-    let discountApplied = false;
+    // Endirim yalnız chemical + polish + ceramic birlikdə seçildikdə
     let discountMin = 0;
     let discountMax = 0;
-    if (selectedValues.includes("chemical") && selectedValues.includes("polish") && selectedValues.includes("ceramic")) {
+    let discountApplied = false;
+
+    const allComplexSelected = COMPLEX_SERVICES.every(v => selectedValues.includes(v));
+    if (allComplexSelected) {
       discountApplied = true;
+      // Yalnız bu 3 xidmətin dəyəri üzərindən endirim
       const chem = prices.chemical, pol = prices.polish, cer = prices.ceramic;
       const comboMin = (chem.min + pol.min + cer.min) * multiplier;
       const comboMax = (chem.max + pol.max + cer.max) * multiplier;
-      discountMin = comboMin * PACKAGE_DISCOUNT;
-      discountMax = comboMax * PACKAGE_DISCOUNT;
-      min -= discountMin;
-      max -= discountMax;
+      discountMin = comboMin * DISCOUNT;
+      discountMax = comboMax * DISCOUNT;
     }
+
+    const finalMin = Math.max(0, min - discountMin);
+    const finalMax = Math.max(0, max - discountMax);
 
     let priceText;
     if (min === 0 && max === 0 && hasInspectionOnly) {
       priceText = t("inspectionOnly");
     } else {
-      priceText = formatMoney(Math.round(Math.max(0, min))) + " – " + formatMoney(Math.round(Math.max(0, max)));
+      priceText = formatMoney(Math.round(finalMin)) + " – " + formatMoney(Math.round(finalMax));
       if (hasInspectionOnly) {
         priceText += " (+ " + t("inspectionOnly").toLowerCase() + ")";
       }
     }
     document.getElementById("price").textContent = priceText;
 
+    if (discountApplied) {
+      discountLine.hidden = false;
+      discountLine.textContent = t("discountLabel") + ": −" +
+        formatMoney(Math.round(discountMin)) + " – " + formatMoney(Math.round(discountMax));
+    } else {
+      discountLine.hidden = true;
+      discountLine.textContent = "";
+    }
+
     const messageLines = [
       t("waMessage"),
       selectedNames.join(", "),
       "\n" + t("carLabel") + ": " + document.getElementById("carSize").selectedOptions[0].text,
       "\n" + t("conditionLabelShort") + ": " + document.getElementById("condition").selectedOptions[0].text,
-      "\n" + t("levelLabelShort") + ": " + document.getElementById("level").selectedOptions[0].text,
-      "\n" + t("estimatedLabel") + ": " + priceText
+      "\n" + t("levelLabelShort") + ": " + document.getElementById("level").selectedOptions[0].text
     ];
+
     if (discountApplied) {
-      messageLines.push("\n" + t("waPackageLine") + "-" + t("discountPercent") + " (-" + formatMoney(Math.round(discountMin)) + " – " + formatMoney(Math.round(discountMax)) + ")");
+      messageLines.push(t("waFullPrice") + formatMoney(Math.round(min)) + " – " + formatMoney(Math.round(max)));
+      messageLines.push(t("waDiscountLine") + "−" + formatMoney(Math.round(discountMin)) + " – " + formatMoney(Math.round(discountMax)));
+      messageLines.push(t("waFinalPrice") + formatMoney(Math.round(finalMin)) + " – " + formatMoney(Math.round(finalMax)));
+    } else {
+      messageLines.push("\n" + t("estimatedLabel") + ": " + priceText);
     }
+
     if (hasInspectionOnly) {
       messageLines.push("\n" + t("priceAfterInspection"));
     }
@@ -1111,13 +970,14 @@
         if (data.rates.AZN) rates.AZN = data.rates.AZN;
       }
     } catch (error) {
-      // API əlçatan olmadıqda yuxarıdakı ehtiyat məzənnələr istifadə olunur.
+      // API əlçatan olmadıqda ehtiyat məzənnələr istifadə olunur.
     }
     updatePriceLabels();
   }
 
   applyLanguage();
-  loadExchangeRates();
+  loadExternalRatesSafe = loadExchangeRates;
+  loadExternalRatesSafe();
 </script>
 </body>
 </html>
